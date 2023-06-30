@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{ifset title}{include title|stripHtml} | {/ifset}Orders</title>
+
+    <link rel="stylesheet" type="text/css" href="{$basePath}/css/styles_b.css" title="Layout CSS" />
+
+	<script src="https://kit.fontawesome.com/db9ac4f093.js" crossorigin="anonymous"></script>
+	<script src="https://nette.github.io/resources/js/netteForms.min.js"></script>    
+</head>
+
+<body>
+	<div class="container">
+		<div class="header popis">
+			<p class="left2">uživatel:&nbsp;<strong>{$user->getIdentity()->name} </strong>,</p>
+			{if ($user->isInRole("admin"))}
+				<p class="left2">pozice:&nbsp;<strong>{$user->getIdentity()->getRoles()[0]}</strong>,</p>
+			{/if}
+			{if ($user->isInRole("member"))}
+				<p class="left2">role:&nbsp;<strong>uživatel</strong>,</p>
+			{/if}
+			<p class="left2">čas přihlášení: {$user->getIdentity()->date}</p>
+			<p class="flex-item-right2"><a n:href="Home:signOut" title="odhlásit se"><i class="fa-solid fa-right-from-bracket fa-2xl"></i></a></p>
+		</div>
+		<div class="flex-container">
+			<nav class="flex-item-left"> 
+							
+				<ul class="sidenav">
+					<li><a n:href="AddCompany:default" n:class="isLinkCurrent()? active">správa firem</a></li>
+					<li><a n:href="AddOrder:default" n:class="isLinkCurrent()? active">nová objednávka</a></li>
+					<li><a n:href="Orders:default" n:class="isLinkCurrent()? active">objednávky {Date("Y")}</a></li>
+					<li></br> </li>
+					<li><a n:href="OrdersOld:default" n:class="isLinkCurrent()? active">objednávky {Date("Y")-1}</a></li>
+					<li class="dropdown-btn">archiv <i class="fa fa-caret-down"></i></li>
+					<li class="dropdown-container">	
+						<a n:href="Archive:default 2021" n:class="isLinkCurrent()? active">objednávky 2021</a>
+						<a n:href="Archive:default 2020" n:class="isLinkCurrent()? active">objednávky 2020</a>
+						<a n:href="Archive:default 2019" n:class="isLinkCurrent()? active">objednávky 2019</a>
+						<a n:href="Archive:default 2018" n:class="isLinkCurrent()? active">objednávky 2018</a>	
+					</li>				
+				
+						<li class="dropdown-btn">nastavení <i class="fa fa-caret-down"></i></li>
+					
+					<li class="dropdown-container">	
+						{if ($user->isInRole("admin"))}
+							<a n:href="AddUser:default" n:class="isLinkCurrent()? active">uživatelé</a>
+							<a n:href="AddSchool:default" n:class="isLinkCurrent()? active">škola</a>
+						{/if}
+						{if ($user->isInRole("member"))}
+							<a n:href="ChangePassword:default" n:class="isLinkCurrent()? active">změna hesla</a>
+						{/if}
+					</li>
+					
+				</ul>
+			</nav>
+
+			<section class="flex-item-right">
+			{snippet flash-message}
+				<div  n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type">{$flash->message}</div>
+			{/snippet}
+			{include content}
+			</section>
+		</div>
+	</div>
+
+	{block scripts}
+	<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
+	<script src="https://unpkg.com/naja@2/dist/Naja.min.js"></script>
+	<script src="{$basePath}/js/dropdownmenu.js"></script>
+	<script src="{$basePath}/js/index.js"></script>
+	{/block}
+
+</body>
+</html>

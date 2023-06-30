@@ -1,0 +1,11 @@
+{templateType App\Components\Sign\SignInControlTemplate}
+
+{block content}
+<div class="container">
+<div class="container-small effect">
+    <div class="sign-formik">
+        <div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+            {control signInControl}
+        </div>
+    </div>
+</div>

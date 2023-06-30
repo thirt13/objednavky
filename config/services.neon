@@ -1,0 +1,20 @@
+search:
+	-
+		in: %appDir%
+		classes:
+			- *Factory
+			- *Facade
+
+services:
+	- App\Router\RouterFactory::createRouter
+	- App\Model\Authenticator
+	- UserService
+	- ProviderService
+	- OrderService
+	- SchoolService
+	- App\Components\Company\CompanyControlFactory
+	- App\Components\Order\OrderControlFactory
+	- App\Components\Sign\SignInControlFactory
+	- App\Components\User\UserControlFactory
+	- App\Components\User\ChangePasswordControlFactory
+	- App\Components\School\SchoolControlFactory

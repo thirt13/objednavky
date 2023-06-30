@@ -1,0 +1,55 @@
+{templateType  App\Presenters\templates\Archive\ArchiveTemplate}
+
+{block content}
+<h1>Archiv objednávek {$year}</h1>
+
+{snippet tbl-content}
+    <table>
+        <tr class="tbl-header">
+            <th class="td20 tdc">č.obj</th>
+            <th class="td20">aktivní</th>
+            <th class="td150 tdc">vystaveno</th>
+            <th>název firmy</th>
+            <th class="td20">PDF1</th>
+            <th class="td20">PDF2</th>
+        </tr>
+    
+        <tr n:foreach="$items as $item"> 
+            <td class="td20">{$item->order_number}/{$item->year}</td>
+            <td n:if="$item->active == 1">aktivní</td>
+            <td n:if="$item->active == 0">dokončeno</td>
+            <td>{$item->created_at}</td>
+            <td>{$item->name}</td>
+             <td class="tdc"><a href="{$basePath}/objednavky/{$item->year}/{$item->pdf}" download><i class="fa-solid fa-file-pdf fa-lg"></i></a></td>
+
+            {var $file_name = Nette\Utils\Strings::replace($item->pdf, "[.pdf]", "-1.pdf")}
+            
+            <td class="tdc"><a href="{$basePath}/objednavky/{$item->year}/{$file_name}" download><i class="fa-regular fa-file-pdf fa-lg"></i></a></td>
+        </tr>
+
+    </table>
+
+    <div class="pagination">
+        {if $page > 1}
+            <a n:href="default, $year, 1" class="ajax">První</a>
+            &nbsp;|&nbsp;
+            <a n:href="default, $year, $page - 1" class="ajax">Předchozí</a>
+            &nbsp;|&nbsp;
+        {/if}
+        Stránka {$page} z {$lastPage}
+        {if $page < $lastPage}
+            &nbsp;|&nbsp;
+            <a n:href="default, $year, $page + 1" class="ajax">Další</a>
+            &nbsp;|&nbsp;
+            <a n:href="default, $year, $lastPage" class="ajax">Poslední</a>
+        {/if}
+    </div>
+{/snippet}
+
+
+<div id="myForm" class="side">
+    {snippet component-content}
+    <a href="javascript:void(0)" class="closebtn" onclick="closeForm()">&times;</a>
+        {control orderControl}
+    {/snippet}
+</div>

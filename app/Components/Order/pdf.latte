@@ -1,0 +1,102 @@
+<html>
+  	<head>
+  		<title>OBJEDNÁVKA č. {$order->order_number}/{$order->year}</title>
+ 		<link rel="stylesheet" type="text/css" href="./css/print_pdf.css" title="Layout CSS" />
+	</head>
+	<body>
+
+		<div class="header1">{$school->name}</div>
+		<div class="header2">OBJEDNÁVKA č. {$order->order_number}/{$order->year}</div>
+		<div class="top">
+			<h1>odběratel</h1>
+			<p>{$school->name}</p> 
+			<table class="odberatel">
+				<tr>
+					<td class="bold">adresa:</td><td>{$school->street}</td>
+				</tr>
+				<tr>
+					<td class="bold">&nbsp;</td><td>{$school->zip} {$school->city}</td>
+				</tr>
+				<tr>
+					<td class="bold">&nbsp;</td><td>{$school->country}</td>
+				</tr>
+				<tr>
+					<td class="bold">IČ:</td><td>{$school->ic}</td>
+				</tr>
+				<tr>
+					<td class="bold">DIČ:</td><td>{$school->dic}</td>
+				</tr>
+				<tr>	
+					<td class="bold">číslo účtu:</td><td>{$school->account_number}</td>
+				</tr>
+				<tr>
+					<td class="bold">telefon:</td><td>{$school->phone}</td>
+				</tr>
+				<tr>	
+					<td class="bold">email:</td><td>{$school->email}</td>
+				</tr>
+				<tr>
+					<td class="bold">http://</td><td>{$school->www}</td>
+				</tr>
+				<tr>
+					<td class="bold">vyřizuje:</td><td>{$school->director}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="top2">
+			<h1>dodavatel</h1>
+			<p>{$provider->name}</p> 
+			<table class="odberatel">
+				<tr>
+					<td class="bold">adresa:</td><td>{$provider->street}</td>
+				</tr>
+				<tr>
+					<td class="bold">&nbsp;</td><td>{$provider->zip} {$provider->city}</td>
+				</tr>
+				<tr>
+					<td class="bold">&nbsp;</td><td> {$provider->country}</td>
+				</tr>
+				<tr>
+					<td class="bold">IČ:</td><td>{$provider->ic}</td>
+				</tr>
+				<tr>
+					<td class="bold">DIČ:</td><td>{$provider->dic}</td>
+				</tr>
+				<tr>
+					<td class="bold">telefon:</td><td>{$provider->phone}</td>
+				</tr>
+				<tr>
+					<td class="bold">email:</td><td>{$provider->email}</td>
+				</tr>
+				<tr>
+					<td class="bold">&nbsp;</td><td>&nbsp;</td>
+				</tr>
+				<tr>	
+					<td class="bold">dodání do:</td><td>{$order->finish}</td>
+				</tr>
+				<tr>
+					<td class="bold">vyřizuje:</td><td>{$provider->director}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+
+		<div class="obsah">
+			<p>Objednáváme u Vás:</p>
+			<p class="obs">{$order->order_item|noescape}</p>   
+		</div>
+		<div class="paticka">
+			<p>Podrobnosti platby:</p>  
+			<p class="obs">{$order->detail}</p>      
+		</div>
+		<div class="clear">&nbsp;</div>
+		
+		<div class="footer1">V Brně dne: {$order->created_at}</div>
+		<div class="footer2"><b>schválil:  {$school->director}</b><br /><b>razítko a podpis: </b></div>
+	
+	</body>
+</html>
+
+
+
+

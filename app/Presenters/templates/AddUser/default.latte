@@ -1,0 +1,47 @@
+{templateType  App\Presenters\templates\AddUser\AddUserTemplate}
+
+{block content}
+<h1>Správa uživatelů</h1>
+<div class="searching">
+    <div class="div50">
+        <p>Role admin může měnit úplně všechno, včetně nastavení informací o vaší škole.</p>
+        <p>Role member může vše, mimo nastavení informací o škole, přidávání uživatele, mazání a úpravu cizích objednávek.</p>
+    </div>
+    <div class="submit"><a n:href="update! 0" class="ajax"><input type="submit" name="addUser" value="Přidat uživatele" class="button" onclick="openForm()"></a></div>
+</div>
+
+
+{snippet tbl-content}
+    <table>
+        <tr class="tbl-header">
+            <th class="td150 tdc">jméno</th>
+            <th class="td150 tdc">username</th>
+            <th class="td150 tdc ">role</th>
+            <th class="td120 tdc">aktivní</th>
+            <th class="td20 tdc">del</th>
+            <th class="td20 tdc">upd</th>
+        </tr>
+    
+        <tr n:foreach="$items as $item"> 
+            <td>{$item->name}</td>
+            <td>{$item->username}</td>
+            <td>{$item->role}</td>
+            <td n:if="$item->active == 1">aktivní</td>
+            <td n:if="$item->active == 0">neaktivní</td>
+
+            <td class="td20 tdc"><a n:href="delete! $item->id" class="ajax" data-confirm="Opravdu vymazat záznam?" title="smazat záznam"><i class="fa-solid fa-trash"></i></a></td>
+            <td class="td20 tdc"><a n:href="update! $item->id" class="ajax" title="upravit záznam" onclick="openForm()"><i class="fa-solid fa-pencil"></i></td>
+           
+
+        </tr>
+
+    </table>
+{/snippet}
+
+
+<div id="myForm" class="side">
+    {snippet component-content}
+    <a href="javascript:void(0)" class="closebtn" onclick="closeForm()">&times;</a>
+    {control userControl}
+    {/snippet}
+</div>

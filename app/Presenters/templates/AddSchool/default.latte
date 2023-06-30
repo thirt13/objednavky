@@ -1,0 +1,65 @@
+{templateType  App\Presenters\templates\AddSchool\AddSchoolTemplate}
+
+{block content}
+<h1>Správa firem</h1>
+
+<div class="searching">
+    <div class="div50">
+        <p>Při změně názvu školy,... přidat nový záznam. Od toho dne bude nový záznam ve všech nových objednávkách.</p>
+    </div>
+    <div class="submit">
+        <a n:href="update! 0" class="ajax">
+             <input type="submit" name="addFirm" value="Přidat záznam" class="button" onclick="openForm()">
+        </a>
+    </div>
+</div>
+{snippet tbl-content}
+    <table>
+        <tr class="tbl-header">
+            <th class="td20 tdc">id</th>
+            <th>název školy</th>
+            <th>IČ</th>
+            <th class="td120">telefon</th>
+            <th class="td120">email</th>
+            <th class="td20 tdc">del</th>
+            <th class="td20 tdc">upd</th>
+        </tr>
+    
+        <tr n:foreach="$items as $item"> 
+            <td class="td20">{$item->id}</td>
+            <td>{$item->name}</td>
+            <td>{$item->ic}</td>
+            <td>{$item->phone}</td>
+            <td>{$item->email}</td>
+            <td class="td20 tdc"><a n:href="delete! $item->id" class="ajax" data-confirm="Opravdu vymazat záznam?" title="smazat záznam"><i class="fa-solid fa-trash"></i></a></td>
+            <td class="td20 tdc"><a n:href="update! $item->id" class="ajax" title="upravit záznam" onclick="openForm()"><i class="fa-solid fa-pencil"></i></td>
+        </tr>
+
+    </table>
+
+    <div class="pagination">
+        {if $page > 1}
+            <a n:href="default, 1" class="ajax">První</a>
+            &nbsp;|&nbsp;
+            <a n:href="default, $page - 1" class="ajax">Předchozí</a>
+            &nbsp;|&nbsp;
+        {/if}
+        Stránka {$page} z {$lastPage}
+        {if $page < $lastPage}
+            &nbsp;|&nbsp;
+            <a n:href="default, $page + 1" class="ajax">Další</a>
+            &nbsp;|&nbsp;
+            <a n:href="default, $lastPage" class="ajax">Poslední</a>
+        {/if}
+    </div>
+{/snippet}
+
+
+
+
+<div id="myForm" class="side">
+    {snippet component-content}
+    <a href="javascript:void(0)" class="closebtn" onclick="closeForm()">&times;</a>
+        {control schoolControl}
+    {/snippet}
+</div>
