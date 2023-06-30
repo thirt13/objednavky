@@ -1,17 +1,4 @@
 
-Nette Web Project
-=================
-
-This is a simple, skeleton application using the [Nette](https://nette.org). This is meant to
-be used as a starting point for your new projects.
-
-[Nette](https://nette.org) is a popular tool for PHP web development.
-It is designed to be the most usable and friendliest as possible. It focuses
-on security and performance and is definitely one of the safest PHP frameworks.
-
-If you like Nette, **[please make a donation now](https://nette.org/donate)**. Thank you!
-
-
 Requirements
 ------------
 
@@ -34,4 +21,13 @@ Zde je jednoduchá verze tvorby objednávek pro nejmenovanou školu dle jejího 
 Návrh databáze je v souboru **ssorder.sql**
 
 ### ukázky:
+
+![01](https://github.com/thirt13/objednavky/assets/47921098/cbf01907-b689-4e54-95d3-0f2ac85dc0b0)
+
+![02](https://github.com/thirt13/objednavky/assets/47921098/db7de89a-84f4-4998-ad20-3be7ea9fec7d)
+
+![03](https://github.com/thirt13/objednavky/assets/47921098/ff7babcd-4e4f-4a22-b23c-a347862222ef)
+
+![07](https://github.com/thirt13/objednavky/assets/47921098/6e2cea58-ab22-4104-99dc-a41830b7dd2e)
+![04](https://github.com/thirt13/objednavky/assets/47921098/b885f3d4-35e8-46d8-bb87-cb18cd636010)
 
